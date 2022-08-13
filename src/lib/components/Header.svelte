@@ -1,9 +1,9 @@
 <script lang="ts">
 </script>
 
-<header class="flex border-2 border-neutral-header rounded-md p-3 justify-between max-w-2xl mx-auto w-full">
+<header class="flex border-2 border-neutral-header rounded-md p-3 sm:px-4 justify-between max-w-2xl mx-auto w-full">
   <div class="flex items-center">
-    <h1 class="uppercase leading-[0.85] text-[min(3.25vw,1.5rem)]">
+    <h1 class="uppercase leading-[0.85] text-[min(3.5vw,1.375rem)] pl-4">
       Rock<br />
       Paper<br />
       Scissors<br />
