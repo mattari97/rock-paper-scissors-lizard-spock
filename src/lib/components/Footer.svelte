@@ -9,7 +9,7 @@
     aria-label="Open rules overlay"
     on:click={toggleRulesOpen}
     disabled={rulesOpen}
-    class="uppercase tracking-widest border-2 rounded-lg px-10 pt-[0.625rem] pb-3 leading-none"
+    class="uppercase tracking-widest border-2 rounded-lg px-10 pt-[0.625rem] pb-3 leading-none hover:scale-105 transition-transform duration-150 origin-center"
     >Rules
   </button>
   <div
@@ -234,7 +234,7 @@
       <button
         type="button"
         aria-label="Close rules overlay"
-        class="p-4 -mx-4 sm:row-start-1 sm:col-start-2 sm:justify-self-end"
+        class="p-4 -mx-4 sm:row-start-1 sm:col-start-2 sm:justify-self-end hover:scale-110 transition-transform duration-150 origin-center"
         on:click|stopPropagation={toggleRulesOpen}
         disabled={!rulesOpen}
       >
