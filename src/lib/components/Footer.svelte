@@ -16,9 +16,10 @@
     class:opacity-0={!rulesOpen}
     class:pointer-events-none={!rulesOpen}
     class="absolute top-0 left-0 right-0 h-screen px-8 pt-20 pb-12 sm:p-0 flex justify-center sm:items-center transition-opacity duration-300 bg-neutral-white sm:bg-neutral-black/30"
-    on:click|stopPropagation={() => false}
+    on:click|stopPropagation|self={toggleRulesOpen}
   >
     <div
+      on:click|stopPropagation={() => false}
       class="flex flex-col justify-between items-center sm:grid sm:grid-cols-[auto_auto] sm:grid-rows-[auto_auto] bg-neutral-white rounded-lg sm:p-8 sm:pt-4 sm:gap-y-4"
     >
       <h2 class="uppercase text-neutral-dark leading-none text-3xl font-bold tracking-wide">Rules</h2>
