@@ -25,6 +25,7 @@ module.exports = {
       },
       neutral: {
         white: "hsl(100, 100%, 100%)",
+        black: "hsl(0, 0%, 8%)",
         dark: "hsl(229, 25%, 31%)",
         score: "hsl(229, 64%, 46%)",
         header: "hsl(217, 16%, 45%)",
