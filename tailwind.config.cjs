@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 module.exports = {
   content: ["./src/app.html", "./src/**/*.{svelte,ts}"],
   theme: {
@@ -43,5 +44,15 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addUtilities, theme }) => {
+      addUtilities({
+        ".bg-gradient": {
+          background: `radial-gradient(circle at top, ${theme("colors.gradient.light")} 0, ${theme(
+            "colors.gradient.dark"
+          )} 100%)`,
+        },
+      });
+    }),
+  ],
 };
