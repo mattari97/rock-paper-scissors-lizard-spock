@@ -39,6 +39,9 @@ module.exports = {
       bold: 700,
     },
     extend: {
+      fontSize: {
+        xxs: ["0.625rem", { lineHeight: "0.875rem" }],
+      },
       fontFamily: {
         sans: ["Barlow\\ Semi\\ Condensed", ...defaultTheme.fontFamily.sans],
       },
