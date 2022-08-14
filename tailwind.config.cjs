@@ -56,6 +56,9 @@ module.exports = {
             "colors.gradient.dark"
           )} 100%)`,
         },
+        ".shadow-inner-responsive": {
+          boxShadow: "inset 0 0.125em 0.125em 0 hsla(217, 16%, 45%, 0.6)",
+        },
       });
     }),
   ],
