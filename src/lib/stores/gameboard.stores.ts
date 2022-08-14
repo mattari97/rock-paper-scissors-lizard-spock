@@ -49,17 +49,11 @@ export const startGame = async (player: GameChoice) => {
   const result = getResult({ player, hand }); // Get result
   // Start game & Register player move
   gameboard.update((prev) => ({ ...prev, status: "playing", choices: { ...prev.choices, player } }));
-  console.log("start round");
-  // Show random hand move after delay
-  await later(3000);
-  console.log("show hand");
-  gameboard.update((prev) => ({ ...prev, choices: { ...prev.choices, hand } }));
-  // Show result & Update score after delay
-  await later(3000);
-  console.log("show result");
+  // Show random hand move & results after delay
+  await later(4000);
   gameboard.update((prev) => {
     const score = getNewScore(prev.score, result);
-    return { ...prev, result, score };
+    return { ...prev, choices: { ...prev.choices, hand }, result, score };
   });
 };
 
