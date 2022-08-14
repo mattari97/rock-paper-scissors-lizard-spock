@@ -3,7 +3,7 @@
   import GameCard from "$lib/components/GameCard.svelte";
 </script>
 
-<div class="relative w-full text-[min(3.75vw,1.25rem)]">
+<div class="relative w-full text-[min(4vw,1.25rem)]">
   <img src="/images/bg-pentagon.svg" alt="" />
   <button
     type="button"
