@@ -32,6 +32,11 @@ const getResult = (choices: GameBoard["choices"]): GameBoard["result"] => {
       return hand === "scissors" || hand === "rock" ? "win" : "lost";
   }
 };
+const getNewScore = (prev: number, result: GameBoard["result"]) => {
+  if (result === "win") return prev + 1;
+  if (result === "lost") return prev === 0 ? prev : prev - 1;
+  return prev;
+};
 
 export const gameboard = writable<GameBoard>({ ...initialValue });
 
@@ -40,19 +45,22 @@ const later = (delay: number = 1000) => {
 };
 
 export const startGame = async (player: GameChoice) => {
+  const hand = getRandomChoice(); // Get hand choice
+  const result = getResult({ player, hand }); // Get result
   // Start game & Register player move
   gameboard.update((prev) => ({ ...prev, status: "playing", choices: { ...prev.choices, player } }));
   console.log("start round");
   // Show random hand move after delay
-  const hand = getRandomChoice();
   await later(3000);
   console.log("show hand");
   gameboard.update((prev) => ({ ...prev, choices: { ...prev.choices, hand } }));
-  // Show result after delay
-  const result = getResult({ player, hand });
+  // Show result & Update score after delay
   await later(3000);
   console.log("show result");
-  gameboard.update((prev) => ({ ...prev, result }));
+  gameboard.update((prev) => {
+    const score = getNewScore(prev.score, result);
+    return { ...prev, result, score };
+  });
 };
 
-export const resetGame = () => gameboard.set({ ...initialValue });
+export const resetGame = () => gameboard.update((prev) => ({ ...initialValue, score: prev.score }));
