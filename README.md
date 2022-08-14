@@ -1,6 +1,6 @@
-# Frontend Mentor - Rock, Paper, Scissors solution
+# Frontend Mentor - Rock, Paper, Scissors (w/ bonus) solution
 
-This is a solution to the [Rock, Paper, Scissors challenge (w/ options) on Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH).
+This is a solution to the [Rock, Paper, Scissors challenge (w/ bonus) on Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH).
 
 ## Table of contents
 
@@ -11,8 +11,6 @@ This is a solution to the [Rock, Paper, Scissors challenge (w/ options) on Front
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 
 ## Overview
@@ -34,8 +32,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Go to solution](https://www.frontendmentor.io/solutions/rest-countries-api-w-svelkit-ts-tailwind-axios-and-ssr-prefetching-i4wDMW6EGE)
-- Live Site URL: [Go to live site](https://rest-countries-api-seven-taupe.vercel.app/)
+- Solution URL: [Go to solution](https://www.frontendmentor.io/solutions/rock-paper-scissors-lizard-spock-sveltekit-tailwind-typescript-H9YeK1xThg)
+- Live Site URL: [Go to live site](https://rock-paper-scissors-lizard-spock-one.vercel.app/)
 
 ## My process
 
@@ -52,125 +50,63 @@ Users should be able to:
 
 ### What I learned
 
-#### Debounce function
+#### Delay function execution
 
-I use this methods to make sure the name filter (from the search input) is not updated on every keypress of the user.
-
-function definition:
+Little helper function to delay the display of the hand choice:
 
 ```ts
-export const debounce = (callback: (props: any) => void, delay: number = 750) => {
-  let timeout: ReturnType<typeof setTimeout>;
-  return (...props: any) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      callback(props);
-    }, delay);
-  };
+const later = (delay: number = 1000) => {
+  return new Promise((resolve) => setTimeout(resolve, delay));
 };
 ```
 
-Then in the component:
+Used in the process like this:
 
 ```ts
-let value: string = $filters.name; // This is the value of the input
-
-const onChange = debounce(() => updateFilter("name", value.trim()), 250); // Runs only if user stops typing for 250ms
-$: value && onChange(); // the $: makes sure onChange is called everytime "value" changes
-```
-
-#### Prefers Color Scheme
-
-Get the color scheme from the user settings in the browser:
-
-```ts
-const getPreferedColorScheme = (): ThemeMode => {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-};
-
-export const getInitialTheme = (defaultValue: ThemeMode): ThemeStore => {
-  if (!browser) return { mode: defaultValue, prefersColorScheme: true };
-  const json = window.localStorage.getItem("theme");
-
-  if (json === null) return { mode: getPreferedColorScheme(), prefersColorScheme: true };
-
-  const storedTheme = JSON.parse(json) as ThemeStore;
-  const mode = storedTheme.prefersColorScheme ? getPreferedColorScheme() : storedTheme.mode;
-  return { ...storedTheme, mode };
+export const startGame = async (player: GameChoice) => {
+  const hand = getRandomChoice(); // Get hand choice
+  const result = getResult({ player, hand }); // Get result
+  // Start game & Register player move
+  gameboard.update((prev) => ({ ...prev, status: "playing", choices: { ...prev.choices, player } }));
+  // Show random hand move & results after delay
+  await later(4000);
+  gameboard.update((prev) => {
+    const score = getNewScore(prev.score, result);
+    return { ...prev, choices: { ...prev.choices, hand }, result, score };
+  });
 };
 ```
 
-#### Object.values | Object.keys | Object.entries
+#### Radial gradient
 
-Use these to loop on a JavaScript object like it is an Array
+Used twice in the app for the winner "halo" and the body background:
 
-```ts
-Object.values(data.currencies).forEach((currency) => {
-  props.currencies = props.currencies.concat((currency as any).name, " ");
-});
+body background:
+
+```js
+plugin(({ addUtilities, theme }) => {
+  addUtilities({
+    ".bg-gradient": {
+      background: `radial-gradient(circle at top, ${theme("colors.gradient.light")} 0, ${theme("colors.gradient.dark")} 100%)`,
+    },
+    // Other custom classes
+  });
+}),
 ```
 
-#### $app/store --> navigating
+winning halo:
 
-A readable reactive variable that can be used to track is the app is navigating between two endpoints.
-
-I used it to show a loading overlay when fetching a country in the app:
-
-```ts
-import { navigating } from "$app/stores";
-$: showOverlay = $navigating !== null; // If true --> Show the loading indicator
-```
-
-#### $lib alias
-
-Use src/lib/\* to prevent using absolute paths for imports
-
-When using Typescript you need to declare the path in your tsconfig:
-
-```json
-{
-  "extends": "./.svelte-kit/tsconfig.json",
-  "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    // If you want to change is from src/lib you'll need to update your svelte.config file.
-    "paths": {
-      "$lib": ["src/lib"],
-      "$lib/*": ["src/lib/*"]
-    }
-  }
+```css
+.halo-radial {
+  background: radial-gradient(
+    circle,
+    rgba(39, 50, 82, 0.95) 0 40%,
+    rgba(39, 50, 82, 0.7) 40% 55%,
+    rgba(33, 44, 76, 0.7) 55% 80%,
+    rgba(38, 58, 89, 0.7) 80% 100%
+  );
 }
 ```
-
-Then your imports look like this:
-
-```ts
-import SearchInput from "$lib/components/SearchInput.svelte";
-import RegionSelect from "$lib/components/RegionSelect.svelte";
-import CountryCard from "$lib/components/CountryCard.svelte";
-import type { CountrySimple } from "$lib/types";
-import { filterCountries } from "$lib/helpers";
-import { filters } from "$lib/stores";
-```
-
-### Continued development
-
-I want to implement a service worker to cache the already fetched endpoint for each individual country.
-
-E.g. `https://my-url/countries/[name]`
-
-This way pages would load faster and the Open Source API owners would appreciate the fewer requests.
-
-### Useful resources
-
-- [Heroicons](https://heroicons.com/) - Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS.
-- [Phosphoricons](https://phosphoricons.com/) - Flexible icon family for interfaces, diagrams, presentations, etc...
 
 ## Author
 
