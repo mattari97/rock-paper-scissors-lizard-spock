@@ -152,7 +152,6 @@
             ><text
               font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
               font-size="6"
-              font-style="condensed"
               font-weight="bold"
               transform="translate(124 131)"><tspan x="35" y="20">BEATS</tspan></text
             ><g transform="rotate(40 -169.505 247.617)"
@@ -164,7 +163,6 @@
             ><text
               font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
               font-size="6"
-              font-style="condensed"
               font-weight="bold"
               transform="rotate(40 -161.263 250.617)"><tspan x="35" y="6">BEATS</tspan></text
             ><g transform="rotate(-40 381.505 -93.07)"
@@ -176,7 +174,6 @@
             ><text
               font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
               font-size="6"
-              font-style="condensed"
               font-weight="bold"
               transform="rotate(-40 373.263 -90.07)"><tspan x="35" y="6">BEATS</tspan></text
             ><g
@@ -189,7 +186,6 @@
               ><text
                 font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
                 font-size="6"
-                font-style="condensed"
                 font-weight="bold"
                 transform="rotate(-110 174.766 34.934)"><tspan x="36" y="6">BEATS</tspan></text
               ></g
@@ -203,7 +199,6 @@
               ><text
                 font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
                 font-size="6"
-                font-style="condensed"
                 font-weight="bold"
                 transform="rotate(110 37.234 121.76)"><tspan x="33" y="6">BEATS</tspan></text
               ></g
@@ -212,31 +207,26 @@
             fill="#B1B4C5"
             font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
             font-size="11"
-            font-style="condensed"
             font-weight="bold"><tspan x="252" y="64">BEATS</tspan></text
           ><text
             fill="#B1B4C5"
             font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
             font-size="11"
-            font-style="condensed"
             font-weight="bold"><tspan x="55" y="64">BEATS</tspan></text
           ><text
             fill="#B1B4C5"
             font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
             font-size="11"
-            font-style="condensed"
             font-weight="bold"><tspan x="305" y="225">BEATS</tspan></text
           ><text
             fill="#B1B4C5"
             font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
             font-size="11"
-            font-style="condensed"
             font-weight="bold"><tspan x="1" y="225">BEATS</tspan></text
           ><text
             fill="#B1B4C5"
             font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed"
             font-size="11"
-            font-style="condensed"
             font-weight="bold"><tspan x="154" y="328">BEATS</tspan></text
           ></g
         ></svg
