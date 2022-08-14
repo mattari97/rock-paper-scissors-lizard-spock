@@ -9,3 +9,5 @@ export interface GameBoard {
     hand: GameChoice | null;
   };
 }
+
+export type LocalStorageKey = "score";

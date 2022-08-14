@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
 import type { GameBoard, GameChoice } from "$lib/types";
+import { getInitialData, persistData } from "$lib/helpers";
 
 const initialValue: GameBoard = {
   status: "idle",
@@ -11,11 +12,19 @@ const initialValue: GameBoard = {
   },
 };
 
+export const gameboard = writable<GameBoard>({
+  ...initialValue,
+  score: getInitialData({ defaultValue: 0, key: "score" }),
+});
+
+gameboard.subscribe((store) => persistData({ data: store.score, key: "score" }));
+
 const gameChoices: GameChoice[] = ["lizard", "paper", "rock", "scissors", "spock"];
 const getRandomChoice = () => {
   const index = Math.floor(Math.random() * 4);
   return gameChoices[index];
 };
+
 const getResult = (choices: GameBoard["choices"]): GameBoard["result"] => {
   const { hand, player } = choices;
   if (hand === player) return "draw";
@@ -32,13 +41,12 @@ const getResult = (choices: GameBoard["choices"]): GameBoard["result"] => {
       return hand === "scissors" || hand === "rock" ? "win" : "lost";
   }
 };
+
 const getNewScore = (prev: number, result: GameBoard["result"]) => {
   if (result === "win") return prev + 1;
   if (result === "lost") return prev === 0 ? prev : prev - 1;
   return prev;
 };
-
-export const gameboard = writable<GameBoard>({ ...initialValue });
 
 const later = (delay: number = 1000) => {
   return new Promise((resolve) => setTimeout(resolve, delay));
