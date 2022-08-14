@@ -1,20 +1,29 @@
 <script lang="ts">
-  let rulesOpen = false;
-  const toggleRulesOpen = () => (rulesOpen = !rulesOpen);
+  import { gameboard, resetScore, rulesOpen, toggleRulesOpen } from "$lib/stores";
 </script>
 
 <footer class="flex justify-center sm:justify-end ">
+  {#if $gameboard.score !== 0 && $gameboard.status === "idle"}
+    <button
+      type="button"
+      aria-label="Open rules overlay"
+      on:click={resetScore}
+      disabled={$rulesOpen}
+      class="uppercase tracking-widest border-2 border-transparent rounded-lg px-10 pt-[0.625rem] pb-3 leading-none hover:scale-105 transition-transform duration-150 origin-center"
+      >Reset Score
+    </button>
+  {/if}
   <button
     type="button"
     aria-label="Open rules overlay"
     on:click={toggleRulesOpen}
-    disabled={rulesOpen}
+    disabled={$rulesOpen}
     class="uppercase tracking-widest border-2 rounded-lg px-10 pt-[0.625rem] pb-3 leading-none hover:scale-105 transition-transform duration-150 origin-center"
     >Rules
   </button>
   <div
-    class:opacity-0={!rulesOpen}
-    class:pointer-events-none={!rulesOpen}
+    class:opacity-0={!$rulesOpen}
+    class:pointer-events-none={!$rulesOpen}
     class="absolute top-0 left-0 right-0 h-screen px-8 pt-20 pb-12 sm:p-0 flex justify-center sm:items-center transition-opacity duration-300 bg-neutral-white sm:bg-neutral-black/30"
     on:click|stopPropagation|self={toggleRulesOpen}
   >
@@ -237,7 +246,7 @@
         aria-label="Close rules overlay"
         class="p-4 -mx-4 sm:row-start-1 sm:col-start-2 sm:justify-self-end hover:scale-110 transition-transform duration-150 origin-center"
         on:click|stopPropagation={toggleRulesOpen}
-        disabled={!rulesOpen}
+        disabled={!$rulesOpen}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
           <path

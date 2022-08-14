@@ -58,3 +58,4 @@ export const startGame = async (player: GameChoice) => {
 };
 
 export const resetGame = () => gameboard.update((prev) => ({ ...initialValue, score: prev.score }));
+export const resetScore = () => gameboard.update((prev) => ({ ...prev, score: 0 }));

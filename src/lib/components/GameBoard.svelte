@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { gameboard, resetGame } from "$lib/stores";
+  import { gameboard, resetGame, rulesOpen } from "$lib/stores";
   import type { GameBoard } from "$lib/types";
   import GameCard from "$lib/components/GameCard.svelte";
   import Placeholder from "$lib/components/Placeholder.svelte";
@@ -44,7 +44,7 @@
     <button
       type="button"
       aria-label="Restart game"
-      disabled={!$gameboard.result}
+      disabled={!$gameboard.result || $rulesOpen}
       on:click={resetGame}
       class="uppercase text-lg bg-neutral-white text-neutral-dark tracking-widest border-2 border-neutral-white rounded-lg px-14 pt-[0.625rem] pb-3 leading-none hover:scale-105 transition-transform duration-150 origin-center"
       >Play Again</button
