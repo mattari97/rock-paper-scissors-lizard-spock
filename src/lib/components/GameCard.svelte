@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { GameChoice } from "$lib/types";
   export let name: GameChoice;
+  export let halo: boolean = false;
   const getColorsClassesFromName = () => {
     if (name === "scissors") {
       return "bg-primary-scissors-light shadow-primary-scissors-dark";
@@ -18,9 +19,13 @@
   const src = `/images/icon-${name}.svg`;
 </script>
 
-<div class="w-[6em] aspect-square rounded-full p-[0.75em] shadow-[0_0.25em_0_0] {colorClasses}">
+<div
+  class="w-[6em] aspect-square rounded-full p-[0.75em] shadow-[0_0.25em_0_0] {colorClasses} relative halo {halo
+    ? 'after:opacity-60'
+    : 'after:opacity-0'}"
+>
   <div
-    class="bg-neutral-white w-full h-full rounded-full flex justify-center items-center shadow-inner shadow-neutral-header/60"
+    class="bg-neutral-white w-full h-full rounded-full flex justify-center items-center shadow-inner-responsive shadow-neutral-header/60"
   >
     <div class="w-[2.125em]">
       <img {src} alt="" class="w-full" />
