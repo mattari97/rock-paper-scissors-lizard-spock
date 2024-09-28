@@ -33,7 +33,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Go to solution](https://www.frontendmentor.io/solutions/rock-paper-scissors-lizard-spock-sveltekit-tailwind-typescript-H9YeK1xThg)
-- Live Site URL: [Go to live site](https://rock-paper-scissors-lizard-spock-one.vercel.app/)
+- Live Site URL: [Go to live site](https://rock-paper-scissors-lizard-spock-acdev.vercel.app/)
 
 ## My process
 
@@ -67,7 +67,7 @@ export const startGame = async (player: GameChoice) => {
   const hand = getRandomChoice(); // Get hand choice
   const result = getResult({ player, hand }); // Get result
   // Start game & Register player move
-  gameboard.update((prev) => ({ ...prev, status: "playing", choices: { ...prev.choices, player } }));
+  gameboard.update((prev) => ({ ...prev, status: 'playing', choices: { ...prev.choices, player } }));
   // Show random hand move & results after delay
   await later(4000);
   gameboard.update((prev) => {
