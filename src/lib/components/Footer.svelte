@@ -31,7 +31,7 @@
       on:click|stopPropagation={() => false}
       class="flex flex-col justify-between w-full h-full md:h-fit sm:w-fit items-center sm:grid sm:grid-cols-[auto_auto] sm:grid-rows-[auto_auto] bg-neutral-white rounded-lg sm:p-12 sm:pt-8 sm:gap-y-12"
     >
-      <h2 class="uppercase text-neutral-dark leading-none text-3xl line-h font-bold tracking-wide">Rules</h2>
+      <h2 class="uppercase text-neutral-dark leading-none text-3xl font-bold tracking-wide">Rules</h2>
       <svg class="sm:w-[480px] sm:col-span-2 sm:pl-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 330"
         ><defs
           ><linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%"
