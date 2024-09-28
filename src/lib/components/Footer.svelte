@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { gameboard, resetScore, rulesOpen, toggleRulesOpen } from "$lib/stores";
+  import { gameboard, resetScore, rulesOpen, toggleRulesOpen } from '$lib/stores';
 </script>
 
-<footer class="flex justify-center sm:justify-end ">
-  {#if $gameboard.score !== 0 && $gameboard.status === "idle"}
+<footer class="flex justify-center sm:justify-end">
+  {#if $gameboard.score !== 0 && $gameboard.status === 'idle'}
     <button
       type="button"
       aria-label="Open rules overlay"
@@ -24,15 +24,15 @@
   <div
     class:opacity-0={!$rulesOpen}
     class:pointer-events-none={!$rulesOpen}
-    class="absolute top-0 left-0 right-0 h-screen px-8 pt-20 pb-12 sm:p-0 flex justify-center sm:items-center transition-opacity duration-300 bg-neutral-white sm:bg-neutral-black/30"
+    class="absolute top-0 left-0 right-0 h-screen px-8 pt-20 pb-12 sm:p-0 flex items-center justify-center transition-opacity duration-300 bg-neutral-white sm:bg-neutral-black/30"
     on:click|stopPropagation|self={toggleRulesOpen}
   >
     <div
       on:click|stopPropagation={() => false}
-      class="flex flex-col justify-between items-center sm:grid sm:grid-cols-[auto_auto] sm:grid-rows-[auto_auto] bg-neutral-white rounded-lg sm:p-8 sm:pt-4 sm:gap-y-4"
+      class="flex flex-col justify-between w-full h-full md:h-fit sm:w-fit items-center sm:grid sm:grid-cols-[auto_auto] sm:grid-rows-[auto_auto] bg-neutral-white rounded-lg sm:p-12 sm:pt-8 sm:gap-y-12"
     >
-      <h2 class="uppercase text-neutral-dark leading-none text-3xl font-bold tracking-wide">Rules</h2>
-      <svg class="max-w-[340px] sm:col-span-2 sm:pl-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 330"
+      <h2 class="uppercase text-neutral-dark leading-none text-3xl line-h font-bold tracking-wide">Rules</h2>
+      <svg class="sm:w-[480px] sm:col-span-2 sm:pl-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 330"
         ><defs
           ><linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%"
             ><stop offset="0%" stop-color="#FFF" stop-opacity=".097" /><stop
