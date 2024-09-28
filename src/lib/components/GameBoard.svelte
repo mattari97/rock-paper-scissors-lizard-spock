@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  import { gameboard, resetGame, rulesOpen } from "$lib/stores";
-  import type { GameBoard } from "$lib/types";
-  import GameCard from "$lib/components/GameCard.svelte";
-  import Placeholder from "$lib/components/Placeholder.svelte";
-  const getResultMsg = (result: GameBoard["result"]) => {
-    if (result === "win") return "You win";
-    if (result === "lost") return "You lose";
-    return "Draw";
+  import { fade } from 'svelte/transition';
+  import { gameboard, resetGame, rulesOpen } from '$lib/stores';
+  import type { GameBoard } from '$lib/types';
+  import GameCard from '$lib/components/GameCard.svelte';
+  import Placeholder from '$lib/components/Placeholder.svelte';
+  const getResultMsg = (result: GameBoard['result']) => {
+    if (result === 'win') return 'You win';
+    if (result === 'lost') return 'You lose';
+    return 'Draw';
   };
   $: resultMsg = getResultMsg($gameboard.result);
 </script>
@@ -16,15 +16,15 @@
   <div class="flex flex-col gap-[min(6vw,3rem)] items-center col-span-1 lg:col-start-1">
     {#if $gameboard.choices.player}
       <div class="text-[min(6vw,3rem)] lg:order-1">
-        <GameCard name={$gameboard.choices.player} halo={$gameboard.result === "win"} />
+        <GameCard name={$gameboard.choices.player} halo={$gameboard.result === 'win'} />
       </div>
     {/if}
     <span class="uppercase text-[min(4vw,1.5rem)]">You Picked</span>
   </div>
   <div class="flex flex-col gap-[min(6vw,3rem)] items-center col-span-1 lg:col-start-3">
     {#if $gameboard.choices.hand}
-      <div in:fade={{ duration: 700 }} class="text-[min(6vw,3rem)] lg:order-1">
-        <GameCard name={$gameboard.choices.hand} halo={$gameboard.result === "lost"} />
+      <div in:fade={{ duration: 700 }} class="text-[min(6vw,3rem)] lg:order-1 -z-10">
+        <GameCard name={$gameboard.choices.hand} halo={$gameboard.result === 'lost'} />
       </div>
     {:else}
       <div class="text-[min(6vw,3rem)] lg:order-1">
@@ -32,7 +32,7 @@
       </div>
     {/if}
     <span class:animate-pulse={!$gameboard.choices.hand} class="uppercase text-[min(4vw,1.5rem)]"
-      >{!$gameboard.choices.hand ? "Picking..." : "The House Picked"}</span
+      >{!$gameboard.choices.hand ? 'Picking...' : 'The House Picked'}</span
     >
   </div>
   <div
